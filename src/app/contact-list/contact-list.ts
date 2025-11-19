@@ -5,7 +5,7 @@ import { ImageController } from '../image-controller/image-controller';
 
 @Component({
   selector: 'app-contact-list',
-  imports: [Contact, Toolbar, ImageController],
+  imports: [Contact, Toolbar],
   templateUrl: './contact-list.html',
   styleUrl: './contact-list.css',
 })
