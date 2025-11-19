@@ -1,1 +1,4 @@
-<app-contact></app-contact>
+@for (item of list; track item.id) {
+<app-contact [id]="item.id" [firstName]="item.firstName" [lastName]="item.lastName" [phone]="item.phone" [email]="item.email"></app-contact>
+}
+

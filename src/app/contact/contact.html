@@ -1,25 +1,17 @@
 <div>
-    <div>
-        <p>{{id()}}</p>
-    </div>
-    <div>
-        <p>{{firstName()}}</p>
-    </div>
-    <div>
-        <p>{{lastName()}}</p>
-    </div>
-    @if (phone()){
-    <div>
-        <p><a [href]="phoneLink()">{{phone()}}</a></p>
-    </div>
-}@else{
-    No phone number
-}
-@if (email()){
-    <div>
-        <p><a href="{{emailLink()}}">{{email()}}</a></p>
-    </div>
-}@else{
-    No email address
-}
+    {{id()}} - {{firstName()}} <img [src]="picture()" width="64" height="64"><br>
+    <button (click)="switchShowDetails()">{{showDetails()?'Hide Details' : 'Show Details'}}</button>
+    @if (showDetails()){
+        @if (phone()) {
+            <a [href]="phoneLink()">{{phone()}}</a> -
+        }@else{
+            No phone number
+        }
+        @if (email()){
+            <a href="{{emailLink()}}">{{email()}}</a>
+        }@else{
+            No email address
+        }
+    }
+    
 </div>
