@@ -1,8 +1,10 @@
 import { Component, computed, effect, input, signal, WritableSignal } from '@angular/core';
+import { ImageController } from '../image-controller/image-controller';
+import { Notes } from '../notes/notes';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [ImageController, Notes],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
@@ -21,6 +23,7 @@ export class Contact {
   picture = computed(() => `/images/${this.firstName().toLowerCase()}.svg`);
 
   showDetails = signal(false);
+  pictureSize = signal(64);
 
   constructor(){
     //setInterval(() => (this.firstName += '#'), 1000);
@@ -38,8 +41,14 @@ export class Contact {
   }
 
   switchShowDetails() {
-      this.showDetails.update((val) => val = !val)
+      this.showDetails.update((val) => !val)
   }
+
+  /*updatePictureSize(newSize: number){
+    this.pictureSize.set(newSize);
+  }*/
+
+  
 }
 
 

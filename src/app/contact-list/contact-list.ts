@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Contact } from '../contact/contact';
 import { Toolbar } from '../toolbar/toolbar';
+import { ImageController } from '../image-controller/image-controller';
 
 @Component({
   selector: 'app-contact-list',
-  imports: [Contact, Toolbar],
+  imports: [Contact, Toolbar, ImageController],
   templateUrl: './contact-list.html',
   styleUrl: './contact-list.css',
 })

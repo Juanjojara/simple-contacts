@@ -1,5 +1,11 @@
 <div>
-    {{id()}} - {{firstName()}} <img [src]="picture()" width="64" height="64"><br>
+    
+    <!--<app-image-controller (setNewPictureSize)="updatePictureSize($event)"></app-image-controller>-->
+    <app-image-controller [(size)]="pictureSize"></app-image-controller>
+    <img [src]="picture()" width="{{pictureSize()}}" height="{{pictureSize()}}"><br>
+    {{id()}} - {{firstName()}} 
+
+    <br>
     <button (click)="switchShowDetails()">{{showDetails()?'Hide Details' : 'Show Details'}}</button>
     @if (showDetails()){
         @if (phone()) {
@@ -13,5 +19,12 @@
             No email address
         }
     }
-    
+    @defer (on interaction){
+        <app-notes></app-notes>
+    } @placeholder {
+        <p>Click here to see notes</p>
+    } @loading (minimum 2s) {
+        <p>Loading Notes...</p>
+    }
+
 </div>
