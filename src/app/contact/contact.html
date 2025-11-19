@@ -7,6 +7,7 @@
 
     <br>
     <button (click)="switchShowDetails()">{{showDetails()?'Hide Details' : 'Show Details'}}</button>
+    <a [routerLink]="['/contact', 'edit', id()]">Edit</a>
     @if (showDetails()){
         @if (phone()) {
             <a [href]="phoneLink()">{{phone()}}</a> -
@@ -18,13 +19,14 @@
         }@else{
             No email address
         }
+        @defer (on interaction){
+            <app-notes></app-notes>
+        } @placeholder {
+            <p>Click here to see notes</p>
+        } @loading (minimum 2s) {
+            <p>Loading Notes...</p>
+        }
     }
-    @defer (on interaction){
-        <app-notes></app-notes>
-    } @placeholder {
-        <p>Click here to see notes</p>
-    } @loading (minimum 2s) {
-        <p>Loading Notes...</p>
-    }
+    
 
 </div>

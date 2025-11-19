@@ -1,10 +1,11 @@
 import { Component, computed, effect, input, signal, WritableSignal } from '@angular/core';
 import { ImageController } from '../image-controller/image-controller';
 import { Notes } from '../notes/notes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
-  imports: [ImageController, Notes],
+  imports: [ImageController, Notes, RouterLink],
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
