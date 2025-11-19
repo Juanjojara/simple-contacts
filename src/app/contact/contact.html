@@ -8,10 +8,18 @@
     <div>
         <p>{{lastName()}}</p>
     </div>
+    @if (phone()){
     <div>
-        <p>{{phone()}}</p>
+        <p><a [href]="phoneLink()">{{phone()}}</a></p>
     </div>
+}@else{
+    No phone number
+}
+@if (email()){
     <div>
-        <p>{{email()}}</p>
+        <p><a href="{{emailLink()}}">{{email()}}</a></p>
     </div>
+}@else{
+    No email address
+}
 </div>
