@@ -1,7 +1,8 @@
-import { Component, computed, effect, input, signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, inject, input, signal, WritableSignal } from '@angular/core';
 import { ImageController } from '../image-controller/image-controller';
 import { Notes } from '../notes/notes';
 import { RouterLink } from '@angular/router';
+import { ContactStore } from '../contact-store';
 
 @Component({
   selector: 'app-contact',
@@ -12,19 +13,22 @@ import { RouterLink } from '@angular/router';
 export class Contact {
   //id: WritableSignal<number> = signal(1);
   id = input(1);
-  firstName = input('John');
+  /*firstName = input('John');
   lastName = input('Brown');
   phone = input('+39 334443223');
   //phone = signal(false);
   email = input('john.brown@mail.com');
-  //email = input(null);
-  emailLink = computed(() => ("emailto:" + this.email()));
-  phoneLink = computed(() => `tel:${this.phone()}`);
-  fullName = computed(() => `${this.firstName()} ${this.lastName()}`);
-  picture = computed(() => `/images/${this.firstName().toLowerCase()}.svg`);
+  //email = input(null);*/
+  emailLink = computed(() => ("emailto:" + this.email));
+  phoneLink = computed(() => `tel:${this.phone}`);
+  fullName = computed(() => `${this.firstName} ${this.lastName}`);
+  picture = computed(() => `/images/${this.firstName.toLowerCase()}.svg`);
 
+  person = computed(() => this.store.list[this.id()]);
   showDetails = signal(false);
   pictureSize = signal(64);
+
+  store = inject(ContactStore);
 
   constructor(){
     //setInterval(() => (this.firstName += '#'), 1000);
@@ -49,6 +53,21 @@ export class Contact {
     this.pictureSize.set(newSize);
   }*/
 
+  get firstName(){
+    return this.person().firstName
+  }
+
+  get lastName(){
+    return this.person().lastName
+  }
+
+  get phone(){
+    return this.person().phone
+  }
+
+  get email(){
+    return this.person().email
+  }
   
 }
 

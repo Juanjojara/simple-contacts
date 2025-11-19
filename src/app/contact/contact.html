@@ -3,19 +3,19 @@
     <!--<app-image-controller (setNewPictureSize)="updatePictureSize($event)"></app-image-controller>-->
     <app-image-controller [(size)]="pictureSize"></app-image-controller>
     <img [src]="picture()" width="{{pictureSize()}}" height="{{pictureSize()}}"><br>
-    {{id()}} - {{firstName()}} 
+    {{id()}} - {{firstName}} 
 
     <br>
     <button (click)="switchShowDetails()">{{showDetails()?'Hide Details' : 'Show Details'}}</button>
     <a [routerLink]="['/contact', 'edit', id()]">Edit</a>
     @if (showDetails()){
-        @if (phone()) {
-            <a [href]="phoneLink()">{{phone()}}</a> -
+        @if (phone) {
+            <a [href]="phoneLink()">{{phone}}</a> -
         }@else{
             No phone number
         }
-        @if (email()){
-            <a href="{{emailLink()}}">{{email()}}</a>
+        @if (email){
+            <a href="{{emailLink()}}">{{email}}</a>
         }@else{
             No email address
         }

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Contact } from '../contact/contact';
 import { Toolbar } from '../toolbar/toolbar';
 import { ImageController } from '../image-controller/image-controller';
+import { ContactStore } from '../contact-store';
+import { Person } from '../person';
 
 @Component({
   selector: 'app-contact-list',
@@ -11,15 +13,14 @@ import { ImageController } from '../image-controller/image-controller';
 })
 export class ContactList {
 
-  list = [
-    {id: 0, firstName: 'John', lastName: 'Brown', phone: '21321321', email: 'john@mail.com'},
-    {id: 1, firstName: 'Lucy', lastName: 'Pink', phone: '4324324', email: ''},
-    {id: 2, firstName: 'Emma', lastName: 'Green', phone: '', email: 'alice@mail.com'},
-    {id: 3, firstName: 'Bob', lastName: 'White', phone: '', email: ''},
-  ];
+  store = inject(ContactStore);
+
 
   newContactInList(contact: Person){
-    this.list.push(contact);
+    this.store.list.push(contact);
+  }
 
+  getList(){
+    return this.store.list;
   }
 }

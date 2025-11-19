@@ -1,5 +1,5 @@
 <app-toolbar (createNewContact)="newContactInList($event)"></app-toolbar>
-@for (item of list; track item.id) {
-<app-contact [id]="item.id" [firstName]="item.firstName" [lastName]="item.lastName" [phone]="item.phone" [email]="item.email"></app-contact>
+@for (item of store.list; track item.id) {
+<app-contact [id]="item.id"></app-contact>
 }
 
