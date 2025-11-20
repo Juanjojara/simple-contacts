@@ -8,20 +8,22 @@ import { Person } from '../person';
   styleUrl: './toolbar.css',
 })
 export class Toolbar {
-  createNewContact = output<Person>();
+  createNewContact = output();
 
   /*newContact(event: any) {
     console.log(event);
   }*/
-  newContact() {
-    const id = Math.round(Math.random()*1000);
+  newContact(event: any) {
+    /*const id = Math.round(Math.random()*1000);
     const person: Person = {
       id: id,
       firstName: 'Harry',
       lastName: 'Potter',
       phone: '123456789',
       email: 'potter@mail.com'
-    }
-    this.createNewContact.emit(person);
+    }*/
+    //this.createNewContact.emit(person);
+    console.log(event);
+    this.createNewContact.emit();
   }
 }

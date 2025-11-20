@@ -1,3 +1,27 @@
 <h2>Contact Editor</h2>
 <p>contact id => {{id()}}</p>
 <p>{{person() | json}}</p>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="id">Contact ID: {{id()}} </label>
+    </div>
+    <div>
+        <label for="firstName">Firstname</label>
+        <input id="firstName" type="text" name="firstName" formControlName="firstName">
+    </div>
+    <div>
+        <label for="lastName">Lastname</label>
+        <input id="lastName" type="text" name="lastName" formControlName="lastName">
+    </div>
+    <div>
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" name="phone" formControlName="phone">
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input id="email" type="text" name="email" formControlName="email">
+    </div>
+    <div>
+        <input id="submit" type="submit" name="submit" value="save">
+    </div>
+</form>

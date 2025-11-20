@@ -47,7 +47,13 @@ export class Contact {
     });
 
     effect(() => {
-      this.person.set(this.store.list[this.id()]);
+      //this.person.set(this.store.list[this.id()]);
+
+      /*const contact = this.store.findContact(this.id());
+      if (contact){
+        this.person.set(contact);
+      }*/
+      this.store.findContact(this.id(), contact => this.person.set(contact));
     });
 
     

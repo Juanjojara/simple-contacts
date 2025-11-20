@@ -2,10 +2,12 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContactStore } from '../contact-store';
 import { JsonPipe } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { SimpleContact } from '../person';
 
 @Component({
   selector: 'app-contact-editor',
-  imports: [JsonPipe],
+  imports: [JsonPipe, ReactiveFormsModule],
   templateUrl: './contact-editor.html',
   styleUrl: './contact-editor.css',
 })
@@ -14,9 +16,43 @@ export class ContactEditor {
   private store = inject(ContactStore);
   id = signal(0);
 
-  person = computed(() => this.store.list[this.id()]);
+  contactForm = new FormGroup({
+    id: new FormControl(0),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    phone: new FormControl(''),
+    email: new FormControl('')
+  })
+
+  //person = computed(() => this.store.list[this.id()]);
+  person = computed(() => {
+    const contact = this.store.findContact(this.id());
+    if (contact) return contact;
+    return new SimpleContact(this.id());
+  });
 
   constructor(){
-    this.activatedRoute.params.subscribe( params => { this.id.set(parseInt(params['id']))});
+    this.activatedRoute.params.subscribe( params => { 
+      this.id.set(parseInt(params['id']));
+      /*this.contactForm.setValue({
+        firstName: this.person().firstName,
+        lastName: this.person().lastName,
+        phone: this.person().phone,
+        email: this.person().email
+      });*/
+      this.contactForm.setValue(this.person()); //si può utilizzare il metodo abbreviato perché c'è una corrispondenza esatta fra i nome degli attributi
+      /*this.contactForm.patchValue({
+        firstName: this.person().firstName
+      });*/ //questo se si vogliono popolare campi parziali
+    });
+  }
+
+  onSubmit(){
+    const formValues = this.contactForm.value;
+    this.person().firstName = formValues.firstName as string;
+    this.person().lastName = formValues.lastName!;
+    this.person().phone = formValues.phone as string;
+    this.person().email = formValues.email as string;
+    this.store.findContact(this.person().id, p => {}, () => this.store.addContact(this.person()));
   }
 }

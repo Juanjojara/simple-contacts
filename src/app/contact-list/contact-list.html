@@ -1,4 +1,5 @@
-<app-toolbar (createNewContact)="newContactInList($event)"></app-toolbar>
+<!--<app-toolbar (createNewContact)="newContactInList($event)"></app-toolbar>-->
+<app-toolbar (createNewContact)="newContactInList()"></app-toolbar>
 @for (item of store.list; track item.id) {
 <app-contact [id]="item.id"></app-contact>
 }

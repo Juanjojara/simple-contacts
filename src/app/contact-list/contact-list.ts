@@ -3,7 +3,8 @@ import { Contact } from '../contact/contact';
 import { Toolbar } from '../toolbar/toolbar';
 import { ImageController } from '../image-controller/image-controller';
 import { ContactStore } from '../contact-store';
-import { Person } from '../person';
+import { Person, SimpleContact } from '../person';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-list',
@@ -12,15 +13,20 @@ import { Person } from '../person';
   styleUrl: './contact-list.css',
 })
 export class ContactList {
-
+  router = inject(Router);
   store = inject(ContactStore);
 
 
-  newContactInList(contact: Person){
-    this.store.list.push(contact);
+  /*newContactInList(contact: Person){
+    this.list.push(contact);
+  }*/
+  newContactInList(){
+    //const newContact = this.store.createNewContact();
+    //this.router.navigate(['/contact', 'edit', newContact.id])
+    this.router.navigate(['/contact', 'edit', this.store.nextId()])
   }
-
-  getList(){
+  
+  get list(){
     return this.store.list;
   }
 }
