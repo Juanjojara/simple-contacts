@@ -25,6 +25,14 @@ export class ContactList {
     //this.router.navigate(['/contact', 'edit', newContact.id])
     this.router.navigate(['/contact', 'edit', this.store.nextId()])
   }
+
+  searchContactInList(searchText: string){
+    //const newContact = this.store.createNewContact();
+    //this.router.navigate(['/contact', 'edit', newContact.id])
+    //this.router.navigate(['/contact', 'edit', this.store.nextId()])
+    console.log("Search in progress... " + searchText);
+    //this.list.filter()
+  }
   
   get list(){
     return this.store.list;

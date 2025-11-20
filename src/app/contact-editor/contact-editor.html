@@ -8,6 +8,14 @@
     <div>
         <label for="firstName">Firstname</label>
         <input id="firstName" type="text" name="firstName" formControlName="firstName">
+        @if (firstName.invalid && (firstName.dirty || firstName.touched)){
+            @if (firstName.hasError('required')) {
+                <div class="alert">Firstname must be provided</div>
+            }
+            @if (firstName.hasError('minlength')) {
+                <div class="alert">Firstname must be at least 3 characters long</div>
+            }
+        }
     </div>
     <div>
         <label for="lastName">Lastname</label>
@@ -16,12 +24,15 @@
     <div>
         <label for="phone">Phone</label>
         <input id="phone" type="text" name="phone" formControlName="phone">
+        @if (phone.invalid && (phone.dirty || phone.touched)){
+            <div class="alert">Phone number must be in this format +nn nnnnnnnnnn</div>
+        }
     </div>
     <div>
         <label for="email">Email</label>
         <input id="email" type="text" name="email" formControlName="email">
     </div>
     <div>
-        <input id="submit" type="submit" name="submit" value="save">
+        <input id="submit" type="submit" name="submit" value="save" [disabled]="contactForm.invalid">
     </div>
 </form>

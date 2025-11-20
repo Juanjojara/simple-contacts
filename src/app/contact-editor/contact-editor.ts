@@ -2,8 +2,9 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContactStore } from '../contact-store';
 import { JsonPipe } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SimpleContact } from '../person';
+import { phoneNumberValidator, PhoneValidator } from '../phone-validator';
 
 @Component({
   selector: 'app-contact-editor',
@@ -18,9 +19,9 @@ export class ContactEditor {
 
   contactForm = new FormGroup({
     id: new FormControl(0),
-    firstName: new FormControl(''),
+    firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     lastName: new FormControl(''),
-    phone: new FormControl(''),
+    phone: new FormControl('', phoneNumberValidator()),
     email: new FormControl('')
   })
 
@@ -47,7 +48,16 @@ export class ContactEditor {
     });
   }
 
+  get firstName(): FormControl{
+    return this.contactForm.get("firstName") as FormControl;
+  }
+
+  get phone(): FormControl{
+    return this.contactForm.get("phone") as FormControl;
+  }
+
   onSubmit(){
+    if (this.contactForm.invalid) return;
     const formValues = this.contactForm.value;
     this.person().firstName = formValues.firstName as string;
     this.person().lastName = formValues.lastName!;

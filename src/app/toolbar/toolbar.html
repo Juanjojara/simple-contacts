@@ -1,1 +1,10 @@
-<p><button (click)="newContact($event)">New Contact</button></p>
+
+<div>
+    <p><button (click)="newContact($event)">New Contact</button></p>
+</div>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div>
+        <input id="searchText" type="text" name="searchText" formControlName="searchText">
+        <input id="search" type="submit" name="search" value="Search">
+    </div>
+</form>
