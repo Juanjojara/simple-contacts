@@ -3,6 +3,7 @@ import { ImageController } from '../image-controller/image-controller';
 import { Notes } from '../notes/notes';
 import { RouterLink } from '@angular/router';
 import { ContactStore } from '../contact-store';
+import { SimpleContact } from '../person';
 
 @Component({
   selector: 'app-contact',
@@ -24,7 +25,10 @@ export class Contact {
   fullName = computed(() => `${this.firstName} ${this.lastName}`);
   picture = computed(() => `/images/${this.firstName.toLowerCase()}.svg`);
 
-  person = computed(() => this.store.list[this.id()]);
+  //person = computed(() => this.store.list[this.id()]);
+
+  person = signal(new SimpleContact(0));
+
   showDetails = signal(false);
   pictureSize = signal(64);
 
@@ -40,6 +44,10 @@ export class Contact {
     effect(() => {
       console.log(`Fullname has changed to ${this.fullName()}`);
       console.log(`ShowDetails has changed to ${this.showDetails()}`);
+    });
+
+    effect(() => {
+      this.person.set(this.store.list[this.id()]);
     });
 
     

@@ -1,4 +1,5 @@
 import { Component, output } from '@angular/core';
+import { Person } from '../person';
 
 @Component({
   selector: 'app-toolbar',
