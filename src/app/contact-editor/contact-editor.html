@@ -6,20 +6,20 @@
         <label for="id">Contact ID: {{id()}} </label>
     </div>
     <div>
-        <label for="firstName">Firstname</label>
-        <input id="firstName" type="text" name="firstName" formControlName="firstName">
-        @if (firstName.invalid && (firstName.dirty || firstName.touched)){
-            @if (firstName.hasError('required')) {
+        <label for="firstname">Firstname</label>
+        <input id="firstname" type="text" name="firstname" formControlName="firstname">
+        @if (firstname.invalid && (firstname.dirty || firstname.touched)){
+            @if (firstname.hasError('required')) {
                 <div class="alert">Firstname must be provided</div>
             }
-            @if (firstName.hasError('minlength')) {
+            @if (firstname.hasError('minlength')) {
                 <div class="alert">Firstname must be at least 3 characters long</div>
             }
         }
     </div>
     <div>
-        <label for="lastName">Lastname</label>
-        <input id="lastName" type="text" name="lastName" formControlName="lastName">
+        <label for="lastname">Lastname</label>
+        <input id="lastname" type="text" name="lastname" formControlName="lastname">
     </div>
     <div>
         <label for="phone">Phone</label>

@@ -15,8 +15,13 @@ import { Router } from '@angular/router';
 export class ContactList {
   router = inject(Router);
   store = inject(ContactStore);
-  list = this.store.fetchAllContacts();
+  //list = this.store.fetchAllContacts();
 
+  list = new Array<Person>();
+
+  constructor(){
+    this.store.fetchAllContacts('', contacts => this.list = contacts);
+  }
 
   /*newContactInList(contact: Person){
     this.list.push(contact);
@@ -24,11 +29,17 @@ export class ContactList {
   newContactInList(){
     //const newContact = this.store.createNewContact();
     //this.router.navigate(['/contact', 'edit', newContact.id])
-    this.router.navigate(['/contact', 'edit', this.store.nextId()])
+
+    //const nextId = this.store.nextId();
+    //
+    this.store.nextId( nextId => {
+      this.store.addContact(new SimpleContact(nextId));
+      this.router.navigate(['/contact', 'edit', nextId])
+    });
   }
 
   searchContactInList(searchText: string){
-    this.list = this.store.fetchAllContacts(searchText);    
+    this.store.fetchAllContacts(searchText, contacts => this.list = contacts);
   }
   
   /*get list(){

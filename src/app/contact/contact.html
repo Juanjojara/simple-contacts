@@ -3,7 +3,7 @@
     <!--<app-image-controller (setNewPictureSize)="updatePictureSize($event)"></app-image-controller>-->
     <app-image-controller [(size)]="pictureSize"></app-image-controller>
     <img [src]="picture()" width="{{pictureSize()}}" height="{{pictureSize()}}"><br>
-    {{id()}} - {{firstName}} 
+    {{id()}} - {{firstname}} 
 
     <br>
     <button (click)="switchShowDetails()">{{showDetails()?'Hide Details' : 'Show Details'}}</button>

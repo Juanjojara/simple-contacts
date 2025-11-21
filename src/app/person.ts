@@ -1,7 +1,7 @@
 export type Person = {
     id:number;
-    firstName:string;
-    lastName:string;
+    firstname:string;
+    lastname:string;
     phone:string;
     email:string;
 }
@@ -9,8 +9,8 @@ export type Person = {
 export class SimpleContact implements Person {
     constructor(
         public id:number,
-        public firstName:string = '',
-        public lastName:string = '',
+        public firstname:string = '',
+        public lastname:string = '',
         public phone:string = '',
         public email:string = ''
     ) {}

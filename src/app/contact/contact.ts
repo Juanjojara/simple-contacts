@@ -22,8 +22,8 @@ export class Contact {
   //email = input(null);*/
   emailLink = computed(() => ("emailto:" + this.email));
   phoneLink = computed(() => `tel:${this.phone}`);
-  fullName = computed(() => `${this.firstName} ${this.lastName}`);
-  picture = computed(() => `/images/${this.firstName.toLowerCase()}.svg`);
+  fullName = computed(() => `${this.firstname} ${this.lastname}`);
+  picture = computed(() => `/images/${this.firstname.toLowerCase()}.svg`);
 
   //person = computed(() => this.store.list[this.id()]);
 
@@ -67,12 +67,12 @@ export class Contact {
     this.pictureSize.set(newSize);
   }*/
 
-  get firstName(){
-    return this.person().firstName
+  get firstname(){
+    return this.person().firstname
   }
 
-  get lastName(){
-    return this.person().lastName
+  get lastname(){
+    return this.person().lastname
   }
 
   get phone(){
