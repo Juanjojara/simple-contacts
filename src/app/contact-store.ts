@@ -5,7 +5,7 @@ import { Person, SimpleContact } from './person';
   providedIn: 'root',
 })
 export class ContactStore {
-  list = [
+  private list = [
     new SimpleContact(0, 'John', 'Brown', '21321321', 'john@mail.com'),
     new SimpleContact(1, 'Lucy', 'Pink', '4324324', ''),
     new SimpleContact(2, 'Emma', 'Green', '', 'alice@mail.com'),
@@ -49,4 +49,16 @@ export class ContactStore {
     this.list.push(p);
   }
 
+  fetchAllContacts(filterText?: string): Person[] {
+    /*const clone = new Array<Person>();
+    clone.push(...this.list);
+    return clone;*/
+    let predicate: PersonPredicate = (p: Person) => true;
+    if (filterText){
+      predicate = (p: Person) => p.firstName.includes(filterText) || p.lastName.includes(filterText);
+    }
+    return this.list.filter(predicate);
+  }
 }
+
+type PersonPredicate = (p: Person) => boolean;

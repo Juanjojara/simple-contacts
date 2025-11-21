@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class ContactList {
   router = inject(Router);
   store = inject(ContactStore);
+  list = this.store.fetchAllContacts();
 
 
   /*newContactInList(contact: Person){
@@ -27,14 +28,10 @@ export class ContactList {
   }
 
   searchContactInList(searchText: string){
-    //const newContact = this.store.createNewContact();
-    //this.router.navigate(['/contact', 'edit', newContact.id])
-    //this.router.navigate(['/contact', 'edit', this.store.nextId()])
-    console.log("Search in progress... " + searchText);
-    //this.list.filter()
+    this.list = this.store.fetchAllContacts(searchText);    
   }
   
-  get list(){
-    return this.store.list;
-  }
+  /*get list(){
+    return this.store.fetchAllContacts();
+  }*/
 }
